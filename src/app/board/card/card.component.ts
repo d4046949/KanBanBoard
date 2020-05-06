@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ITask } from '../models/task';
 
-import { ITask } from '../../models/task';
 
 @Component({
   selector: 'app-card',

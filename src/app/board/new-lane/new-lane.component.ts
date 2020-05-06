@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { MockTaskService } from '../../services/mock-task.service';
+import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Swimlane } from '../../models/swimlane.model';
+import { Swimlane } from '../models/swimlane.model';
 
 @Component({
   selector: 'app-new-lane',

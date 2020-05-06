@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { NewLaneComponent } from 'src/app/board/components/new-lane/new-lane.component';
+import { NewLaneComponent } from 'src/app/board/new-lane/new-lane.component';
 
 @Component({
   selector: 'app-nav-menu',

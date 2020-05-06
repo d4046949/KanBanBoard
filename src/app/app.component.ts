@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ITaskList } from './board/models/task';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { MockTaskService } from './board/services/mock-task.service';
-import { PanelService } from './board/services/panel.service';
+import { MockTaskService } from './board/mock-task.service';
+import { PanelService } from './board/panel.service';
 
 
 @Component({

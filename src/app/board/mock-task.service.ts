@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ITaskList, ITask } from '../models/task';
-import { Swimlane } from '../models/swimlane.model';
+import { ITaskList, ITask } from './models/task';
+import { Swimlane } from './models/swimlane.model';
 
 @Injectable({
   providedIn: 'root'

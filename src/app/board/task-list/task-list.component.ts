@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MockTaskService } from '../../services/mock-task.service';
+import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { ITaskList, ITask } from '../../models/task';
+import { ITaskList, ITask } from '../models/task';
 
 
 @Component({
