@@ -9,6 +9,7 @@ import { FormsModule }   from '@angular/forms';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardModule } from './board/board.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BoardModule } from './board/board.module';
     DragDropModule,
     BrowserAnimationsModule,
     BoardModule,
-    
+    CoreModule
   ],
   providers: [MyLibService],
   bootstrap: [AppComponent]

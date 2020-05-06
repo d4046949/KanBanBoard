@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { NewEntryComponent } from './components/new-entry/new-entry.component';
 import { NewLaneComponent } from './components/new-lane/new-lane.component';
@@ -16,7 +15,6 @@ import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [ 
-    NavMenuComponent,
     TaskListComponent,
     NewEntryComponent,
     NewLaneComponent,
@@ -32,12 +30,13 @@ import { CardComponent } from './components/card/card.component';
     FormsModule
   ],
   providers: [MockTaskService, PanelService],
-  exports:[NavMenuComponent,
+  exports:[
     HoverDirective,
     PanelComponent,
     BrowserAnimationsModule,
     DragDropModule,
     FormsModule,
-    TaskListComponent]
+    TaskListComponent,
+    NewLaneComponent]
 })
 export class BoardModule { }
