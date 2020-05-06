@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">New Lane</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>Please provide a name for the swim lane</p>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="swim-lane-name">Name</label>
+            <input required type="text" id="name" class="form-control" name="name" aria-describedby="swim name lane"
+                [(ngModel)]="model.name">
+        </div>
+        <hr />
+        <div class="border p-3 mb-2">
+            <p>Drag the lanes left and right to re-arrange</p>
+            <div cdkDropList cdkDropListOrientation="horizontal" class="d-flex w-100 h-100"
+                (cdkDropListDropped)="drop($event)">
+                <div class="swim-lane-container d-flex flex-row" *ngFor="let swimLaneName of swimLaneNames" cdkDrag>
+                    <div class="d-flex flex-row justify-content-center w-100 h-100 bg-red"> {{swimLaneName}}</div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+</div>

@@ -1,0 +1,15 @@
+<!-- <div class="card w-100 border rounded shadow pl-1" [className]="generateStatus()" cdkDrag [ngClass]="{'highlight' :details.isSelected }"
+    (click)="clicked();"> -->
+    <div class="card w-100 border rounded shadow pl-1" cdkDrag 
+    (click)="clicked();">
+    <div class="d-flex flex-row w-100 h-100 justify-content-start border-bottom mb-1">
+            <!-- <div class="mr-3 danger"> <i [className]="determineCardIcon()"></i></div> -->
+            <div class="mr-3 danger"> <i></i></div>
+            <div>{{details.title}}</div> 
+    </div>
+    <div class="w-100 mb-1" style="font-size:10px; ">{{details.description}}
+    </div>
+    <div class="footer w-100 mb-1 border-top d-flex flex-row justify-content-end align-items-center pr-1">
+        <i class="far fa-trash-alt" (click)="delete();"></i>
+    </div>
+</div>

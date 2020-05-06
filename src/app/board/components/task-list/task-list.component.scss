@@ -1,0 +1,21 @@
+.items {
+    width:250px;
+    background: white;
+
+    .header {
+        height:50px;
+        color:white;
+        .context-menu{
+            display:none;
+        }
+    }
+
+    &.header:hover {
+        .context-menu { display:inline-block; }
+    }
+
+    .empty{
+        color:grey;;
+        font-size:12px;
+    }
+}
