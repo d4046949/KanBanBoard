@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardModule } from './board/board.module';
 import { CoreModule } from './core/core.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CoreModule } from './core/core.module';
     DragDropModule,
     BrowserAnimationsModule,
     BoardModule,
-    CoreModule
+    CoreModule,
+    SettingsModule
   ],
   providers: [MyLibService],
   bootstrap: [AppComponent]

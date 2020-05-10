@@ -1,7 +1,10 @@
 <app-nav-menu></app-nav-menu>
-<div class="details d-flex flex-row w-100" cdkDropListGroup>
-    <div *ngFor="let x of taskDetails; index as i;">
-        <app-task-list [taskDetails]="x" [canCreate]="i == 0"  (onDragAndDropped)="drop($event)" ></app-task-list>
+<div class="d-flex flex-row w-100 h-100">
+    <div class="w-100 h-100">
+        <router-outlet></router-outlet>
     </div>
-    <app-panel></app-panel>  
+    <div class="shadow border-left h-100" style=" z-index:9999;" [@isVisibleChanged]="shouldAnimate">
+        <router-outlet name="side-panel" #outlet="outlet"></router-outlet>
+    </div>
 </div>
+

@@ -1,21 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ITask } from '../models/task';
-
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() details: ITask;
   @Output() deleteClicked: EventEmitter<ITask> = new EventEmitter<ITask>();
   @Output() OnSelected: EventEmitter<ITask> = new EventEmitter<ITask>();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  private readonly cardIconMap = { 1: 'fas fa-bug red', 2: 'fas fa-list-ol blue', 3: 'fas fa-share-alt green' }
+  private readonly cardBorderMap = { 1: 'left-border-red', 2: 'left-border-blue', 3: 'left-border-green' };
 
   delete(): void {
     this.deleteClicked.emit(this.details);
@@ -27,28 +24,10 @@ export class CardComponent implements OnInit {
   }
 
   determineCardIcon() {
-    console.log(this.details.status);
-    if (this.details.type === 1) {
-      return "fas fa-bug red";
-    }
-    if (this.details.type === 2) {
-      return "fas fa-list-ol blue";
-    }
-    if (this.details.type === 3) {
-      return "fas fa-share-alt green";
-    }
-
+    return this.cardIconMap[this.details.type];
   }
 
   generateStatus() {
-    if (this.details.type === 1) {
-      return "left-border-red";
-    }
-    if (this.details.type === 2) {
-      return "left-border-blue";
-    }
-    if (this.details.type === 3) {
-      return "left-border-green";
-    }
+    return this.cardBorderMap[this.details.type];
   }
 }

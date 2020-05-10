@@ -12,15 +12,17 @@ import { PanelComponent } from './panel/panel.component';
 import { CardComponent } from './card/card.component';
 import { MockTaskService } from './mock-task.service';
 import { PanelService } from './panel.service';
+import { BoardPageComponent } from './board-page/board-page.component';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     TaskListComponent,
     NewEntryComponent,
     NewLaneComponent,
     HoverDirective,
     PanelComponent,
-    CardComponent
+    CardComponent,
+    BoardPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,13 +32,15 @@ import { PanelService } from './panel.service';
     FormsModule
   ],
   providers: [MockTaskService, PanelService],
-  exports:[
+  exports: [
     HoverDirective,
     PanelComponent,
     BrowserAnimationsModule,
     DragDropModule,
     FormsModule,
     TaskListComponent,
-    NewLaneComponent]
+    NewLaneComponent,
+    BoardPageComponent
+  ]
 })
 export class BoardModule { }
