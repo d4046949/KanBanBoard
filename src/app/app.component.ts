@@ -14,41 +14,16 @@ import {
   state
 } from '@angular/animations';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
+import { rightSliderAnimation } from './shared/right-slide.animation';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [trigger('isVisibleChanged', [
-    state('void', style({
-      width: '0'
-    })),
-    state('false', style({
-      width: '0'
-    })),
-    state('true', style({
-      width: '700px'
-    })),
-    transition('0 => 1', animate('300ms ease-in')),
-    transition('1 => 0', animate('300ms ease-out')),
-    transition('void => 1', animate('300ms ease-in'))
-  ])]
+  animations: rightSliderAnimation
    
 })
 export class AppComponent {
-
-  shouldAnimate: boolean;
-
-  constructor(private route: ActivatedRoute){
-    this.route.params.subscribe((params) => {
-      console.log(params);
-      console.log(this.route.snapshot.data);
-    });
-
-      if (this.route.outlet === 'side-panel') {
-        this.shouldAnimate = true;
-  
-      }
-  }
+  sidenavVisible: boolean = false;
 }
