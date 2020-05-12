@@ -1,18 +1,15 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MockTaskService } from 'src/app/board/mock-task.service';
 import { ITask } from 'src/app/board/models/task';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Observable, combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'app-t',
-  templateUrl: './t.component.html',
-  styleUrls: ['./t.component.scss']
+  selector: 'app-edit-card',
+  templateUrl: './edit-card.component.html',
+  styleUrls: ['./edit-card.component.scss']
 })
-export class TComponent implements OnInit {
+export class EditCardComponent implements OnInit {
 
   shouldAnimate: boolean;
   details: ITask = null;
