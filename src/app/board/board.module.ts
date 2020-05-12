@@ -11,7 +11,6 @@ import { HoverDirective } from './hover.directive';
 import { PanelComponent } from './panel/panel.component';
 import { CardComponent } from './card/card.component';
 import { MockTaskService } from './mock-task.service';
-import { PanelService } from './panel.service';
 import { BoardPageComponent } from './board-page/board-page.component';
 
 @NgModule({
@@ -31,7 +30,7 @@ import { BoardPageComponent } from './board-page/board-page.component';
     DragDropModule,
     FormsModule
   ],
-  providers: [MockTaskService, PanelService],
+  providers: [MockTaskService],
   exports: [
     HoverDirective,
     PanelComponent,

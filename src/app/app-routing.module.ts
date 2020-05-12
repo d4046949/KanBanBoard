@@ -19,7 +19,7 @@ const routes: Routes = [
     data: {animation: 'Home'}
   },
   {
-    path: 'test',
+    path: 'test/:id',
     component: TComponent,
     outlet: 'side-panel',
     data: {animation: 'FilterPage'}

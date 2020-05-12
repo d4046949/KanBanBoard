@@ -6,16 +6,30 @@ import { Swimlane } from './models/swimlane.model';
   providedIn: 'root'
 })
 export class MockTaskService {
+  getDetails(taskId: any): ITask {
+    var allTasks :ITask[] = [];
+
+    this._taskList.forEach(function(swimLane){
+      swimLane.tasks.forEach(task => {
+        allTasks.push(task);
+      });
+    });
+
+   return allTasks.filter((item: ITask) => {return item.id == taskId})[0];
+
+  }
+
+
   deleteLane(taskDetails: ITaskList) {
-   this._taskList.splice(this._taskList.indexOf(taskDetails), 1);
+    this._taskList.splice(this._taskList.indexOf(taskDetails), 1);
   }
 
   add(model: Swimlane) {
-    this._taskList.push({title: model.name, tasks: []});
+    this._taskList.push({ title: model.name, tasks: [] });
   }
   private _taskList: ITaskList[] = null;
 
-  get() : ITaskList[] {
+  get(): ITaskList[] {
     return this._taskList;
   }
 
@@ -65,7 +79,7 @@ export class MockTaskService {
       tasks: [{
         id: 4,
         title: "Test1243",
-        description:" none set",
+        description: " none set",
         isSelected: false,
         type: 1
       }]
@@ -75,9 +89,9 @@ export class MockTaskService {
       tasks: [{
         id: 5,
         title: "testestest",
-        description:" test test test",
+        description: " test test test",
         isSelected: false,
-        type:1
+        type: 1
       }]
     }];
 

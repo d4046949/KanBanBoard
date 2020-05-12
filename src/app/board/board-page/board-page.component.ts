@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITaskList } from '../models/task';
 import { MockTaskService } from '../mock-task.service';
-import { PanelService } from '../panel.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -12,7 +11,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class BoardPageComponent implements OnInit {
   taskDetails : ITaskList[];
 
-  constructor(private taskListService: MockTaskService, public s:PanelService) {
+  constructor(private taskListService: MockTaskService) {
     this.taskDetails = taskListService.generateData();
   }
   ngOnInit(): void {

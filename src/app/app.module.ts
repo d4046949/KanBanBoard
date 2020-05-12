@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyLibService } from 'my-lib';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { FormsModule }   from '@angular/forms';;
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardModule } from './board/board.module';
@@ -17,7 +17,8 @@ import { SettingsModule } from './settings/settings.module';
     AppComponent
   ],
   imports: [
-    FormsModule,
+    FormsModule,  
+    ReactiveFormsModule, 
     ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,

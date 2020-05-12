@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ITaskList, ITask } from '../models/task';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class TaskListComponent {
     return this.taskDetails.title === "Blocked";
   }
 
-  constructor(private taskDataStorage: MockTaskService) {
+  constructor(private taskDataStorage: MockTaskService, private router: Router) {
   }
 
   onDeleteClicked(task: ITask) {
@@ -40,6 +41,6 @@ export class TaskListComponent {
   }
 
   handleOnSelected(task: ITask) {
-
+    this.router.navigate([{ outlets: { 'side-panel': ['test', task.id] } }]);
   }
 }

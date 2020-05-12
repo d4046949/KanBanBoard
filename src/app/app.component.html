@@ -3,8 +3,7 @@
     <div class="w-100 h-100">
         <router-outlet></router-outlet>
     </div>
-    <a [routerLink]="['', {outlets: {'side-panel': null}}]">Close</a>
-    <div class="shadow border-left h-100" style=" z-index:9999;" [@isVisibleChanged]="sidenavVisible">
+    <div class="shadow border-left h-100" style="z-index:50; width:2100px !important; position:absolute; top:0; bottom:0; right:0; background:white" [@isVisibleChanged]="sidenavVisible">
         <router-outlet name="side-panel" #outlet="outlet" (activate)="sidenavVisible = true" (deactivate)="sidenavVisible = false"></router-outlet>
     </div>
 </div>

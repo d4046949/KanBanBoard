@@ -19,3 +19,36 @@
 
   </form>
 </div> -->
+<div>
+  <div class="title w-100 bg-red d-flex justify-content-between align-items-center p-3" style="height:50px">
+    {{details.id}} {{details.title}}
+    <a style="color:white;" [routerLink]="['', {outlets: {'side-panel': null}}]"><small>X</small></a>
+  </div>
+  <hr />
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="m-3">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" aria-describedby="card title" name="title"
+          formControlName="title">
+        <div *ngIf="form.controls.title.errors?.required && form.controls.title.touched" style="color:#dc3545">
+          <small>Title is required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" rows="4" class="form-control" id="description" name="description"
+          formControlName="description"></textarea>
+          <div *ngIf="form.controls.description.errors?.required && form.controls.description.touched" style="color:#dc3545">
+            <small>Description is required</small>
+          </div>
+      </div>
+
+    </div>
+    <div class="footer border-top m-3 p-3">
+      <a [routerLink]="['', {outlets: {'side-panel': null}}]"><small>Cancel</small></a>
+      <button type="submit" [disabled]="!canSave" class="btn btn-primary btn-sm ml-3">Save</button>
+    </div>
+  </form>
+</div>

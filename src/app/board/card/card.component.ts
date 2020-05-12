@@ -19,8 +19,8 @@ export class CardComponent {
   }
 
   clicked() {
-    this.details.isSelected = !this.details.isSelected;
     this.OnSelected.emit(this.details);
+    console.log('**', this.details);
   }
 
   determineCardIcon() {

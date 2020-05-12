@@ -4,14 +4,19 @@ import { RouterModule } from '@angular/router';
 import { routes } from './settings.routing';
 import { TComponent } from './t/t.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BootstrapValidationCssDirective } from '../form-validation-css.directive';
 
 
 @NgModule({
-  declarations: [TComponent],
+  declarations: [TComponent,BootstrapValidationCssDirective],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,  
+    ReactiveFormsModule, 
     RouterModule.forChild(routes)
-  ], exports:[RouterModule, TComponent,BrowserAnimationsModule]
+  ], exports:[RouterModule, TComponent,BrowserAnimationsModule,    FormsModule,  
+    ReactiveFormsModule,BootstrapValidationCssDirective]
 })
 export class SettingsModule { }
