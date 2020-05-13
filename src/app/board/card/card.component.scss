@@ -1,4 +1,5 @@
 .card {
+  
     .footer {
         height:20px;
         color:grey;
@@ -6,12 +7,8 @@
     }
 }
 
-.todo {
-    border-left:6px solid red !important;
-}
-
-.highlight {
-    background:red;
+.highlight{
+  background:cornsilk;
 }
 
 .cdk-drag-preview {

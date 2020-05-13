@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ITaskList, ITask } from '../models/task';
 import { Router } from '@angular/router';
+import { EditCardService } from '../edit-card.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class TaskListComponent {
   @Input() taskDetails: ITaskList;
   @Input() canCreate: boolean;
   @Output() onDragAndDropped: EventEmitter<CdkDragDrop<string[]>> = new EventEmitter<CdkDragDrop<string[]>>();
+  @Output() onSelectedCard: EventEmitter<ITask> = new EventEmitter<ITask>();
 
   public show: boolean = false;
 
@@ -21,7 +23,8 @@ export class TaskListComponent {
     return this.taskDetails.title === "Blocked";
   }
 
-  constructor(private taskDataStorage: MockTaskService, private router: Router) {
+  constructor(private taskDataStorage: MockTaskService) {
+    
   }
 
   onDeleteClicked(task: ITask) {
@@ -40,7 +43,8 @@ export class TaskListComponent {
     this.taskDataStorage.deleteLane(this.taskDetails);
   }
 
-  handleOnSelected(task: ITask) {
-    this.router.navigate([{ outlets: { 'side-panel': ['test', task.id] } }]);
+  handleOnSelected(task: ITask){
+    this.onSelectedCard.emit(task);
   }
+
 }

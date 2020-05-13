@@ -5,12 +5,9 @@ import { routes } from './settings.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BootstrapValidationCssDirective } from '../form-validation-css.directive';
-import { EditCardComponent } from './edit-card/edit-card.component';
-
 
 @NgModule({
   declarations: [
-    EditCardComponent,
     BootstrapValidationCssDirective
   ],
   imports: [
@@ -22,7 +19,6 @@ import { EditCardComponent } from './edit-card/edit-card.component';
   ],
   exports: [
     RouterModule,
-    EditCardComponent,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

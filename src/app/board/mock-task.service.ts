@@ -55,13 +55,6 @@ export class MockTaskService {
         type: 1
       },
       {
-        id: 2,
-        title: "Test1243333",
-        description: "Lorem ipsum dolor sit amet",
-        isSelected: false,
-        type: 1
-      },
-      {
         id: 3,
         title: "Testdff1243",
         description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis nec ante id interdum. Praesent tristique ex nisl, quis sodales lorem sollici  tudin sed. Phasellus vehicula ullamcorper mauris,Phasellus vehicula ullamcorper mauris, vel faucibus quam dapibus sed. In quis ex at lorem cursus aliquam. Proin id ornare nulla. In odio eros, elementum vitae posuere id, mollis at urna. Donec posuere volutpat mi. Cras risus libero, accumsan eget vehicula vitae, sollicitudin in lacus.",

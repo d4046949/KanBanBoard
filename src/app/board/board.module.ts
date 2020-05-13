@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TaskListComponent } from './task-list/task-list.component';
 import { NewEntryComponent } from './new-entry/new-entry.component';
@@ -12,6 +12,9 @@ import { PanelComponent } from './panel/panel.component';
 import { CardComponent } from './card/card.component';
 import { MockTaskService } from './mock-task.service';
 import { BoardPageComponent } from './board-page/board-page.component';
+import { EditCardComponent } from './edit-card/edit-card.component';
+import { RouterModule } from '@angular/router';
+import { routes } from '../settings/settings.routing';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,19 @@ import { BoardPageComponent } from './board-page/board-page.component';
     HoverDirective,
     PanelComponent,
     CardComponent,
-    BoardPageComponent
+    BoardPageComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes),
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [MockTaskService],
   exports: [
@@ -39,7 +47,12 @@ import { BoardPageComponent } from './board-page/board-page.component';
     FormsModule,
     TaskListComponent,
     NewLaneComponent,
-    BoardPageComponent
+    BoardPageComponent,
+    EditCardComponent,
+    RouterModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BoardModule { }

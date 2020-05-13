@@ -11,10 +11,9 @@
     <div class="p-2" *ngIf="canCreate">
         <app-new-entry ></app-new-entry>
     </div>
-    <div *ngIf="taskDetails.tasks.length !== 0">
-       
-        <div class="pl-2 pr-2 pb-2"  [ngClass]="{'pt-2' : !canCreate }" *ngFor="let x of taskDetails.tasks">
-            <app-card [details]="x" (deleteClicked)="onDeleteClicked($event)" (OnSelected)="handleOnSelected($event)"></app-card>
+    <div *ngIf="taskDetails.tasks.length !== 0">      
+        <div class="pl-2 pr-2 pb-2"  [ngClass]="{'pt-2' : !canCreate }" *ngFor="let task of taskDetails.tasks">
+            <app-card [details]="task" [isSelected]="false" (deleteClicked)="onDeleteClicked($event)" (OnSelected)="handleOnSelected($event)"></app-card>
         </div>
     </div>
 </div>
