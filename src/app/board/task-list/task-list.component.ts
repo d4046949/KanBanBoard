@@ -2,9 +2,6 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ITaskList, ITask } from '../models/task';
-import { Router } from '@angular/router';
-import { EditCardService } from '../edit-card.service';
-
 
 @Component({
   selector: 'app-task-list',
@@ -46,5 +43,4 @@ export class TaskListComponent {
   handleOnSelected(task: ITask){
     this.onSelectedCard.emit(task);
   }
-
 }

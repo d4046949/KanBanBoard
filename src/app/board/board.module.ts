@@ -15,6 +15,7 @@ import { BoardPageComponent } from './board-page/board-page.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
 import { RouterModule } from '@angular/router';
 import { routes } from '../settings/settings.routing';
+import { BoardResolverService } from './board-resolver.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { routes } from '../settings/settings.routing';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MockTaskService],
+  providers: [MockTaskService, BoardResolverService],
   exports: [
     HoverDirective,
     PanelComponent,

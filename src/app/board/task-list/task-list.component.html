@@ -1,8 +1,8 @@
 <div class="items d-flex flex-column h-100 border rounded m-3 shadow " id="{{index}}" cdkDropList #index="cdkDropList" [cdkDropListData]="taskDetails.tasks" (cdkDropListDropped)="drop($event)">
     <div class="header border-bottom"  [ngClass]="{'bg-red': getBackground() , 'bg-blue': !getBackground()}">
-        <div class="title d-flex flex-row w-100 justify-content-center align-items-center h-100" appHover (isHovering)="handle()">
+        <div class="title d-flex flex-row w-100 justify-content-center align-items-center h-100" (isHovering)="handle()">
             {{taskDetails.title}} <span class="ml-2"> <small>{{taskDetails.tasks.length}}</small></span>
-            <span class="ml-3" *ngIf="show" (click)="deleteEntry();"><i class="far fa-trash-alt"></i></span>
+            <!-- <span class="ml-3" *ngIf="show" (click)="deleteEntry();"><i class="far fa-trash-alt"></i></span> -->
         </div>
     </div>
     <div *ngIf="taskDetails.tasks.length === 0 && !canCreate" class="pt-3 empty h-100 w-100 d-flex flex-row justify-content-center align-items-self">

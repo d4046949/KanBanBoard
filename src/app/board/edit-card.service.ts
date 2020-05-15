@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ITask } from './models/task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditCardService {
+
+  private _taskViewing = new Subject();
+  taskViewing$ = this._taskViewing.asObservable();
+
   private _toggle = new Subject();
   toggle$ = this._toggle.asObservable();
 
-  toggle(todo) {
-    this._toggle.next(todo);
+  toggle() {
+    this._toggle.next();
+  }
+
+  emitChange = (task: ITask) => {
+    this._taskViewing.next(task);
   }
 
   private _isLoaded = new Subject();

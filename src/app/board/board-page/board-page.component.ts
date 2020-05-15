@@ -1,39 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ITaskList, ITask } from '../models/task';
 import { MockTaskService } from '../mock-task.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { EditCardService } from '../edit-card.service';
 import { Router } from '@angular/router';
+import { TaskService } from 'src/app/task.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss']
+  styleUrls: ['./board-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardPageComponent {
+export class BoardPageComponent implements OnInit, OnDestroy {
   taskDetails: ITaskList[];
   selectedTask: ITask = null;
 
-  constructor(private taskListService: MockTaskService, private sidePaneService: EditCardService, private router: Router) {
-    this.taskDetails = taskListService.generateData();
+  private taskListServiceSubscription: Subscription;
+  private sidePaneServiceSubscription: Subscription;
 
-    this.sidePaneService.toggle$.subscribe((x) => {
+  constructor(private taskListService: MockTaskService, private sidePaneService: EditCardService, private router: Router, private taskService: TaskService,
+    private changeDetector: ChangeDetectorRef) {
+    this.taskListServiceSubscription = taskListService.taskListObserver$.subscribe(t => {
+      this.taskDetails = t;
+    });
+
+    this.sidePaneServiceSubscription = this.sidePaneService.toggle$.subscribe(() => {
+      console.log('**********');
       if (this.selectedTask) {
         this.selectedTask.isSelected = false;
         this.selectedTask = null;
       }
     });
+  }
 
-    this.sidePaneService.isLoaded$.subscribe((id: number) => {
-      if (this.selectedTask === null) {
-        this.selectedTask = this.taskListService.getDetails(id);
-        this.selectedTask.isSelected = true;
-      }
-    });
+  ngOnInit(): void {
+    this.taskService.getActiveTask().subscribe((task: ITask) => {
+      this.selectedTask = task;
+      this.changeDetector.detectChanges();
+    })
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log('event', event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -45,12 +54,12 @@ export class BoardPageComponent {
   }
 
   handleOnSelected(task: ITask) {
-    if (this.selectedTask) {
-      this.selectedTask.isSelected = false;
-    }
-    this.selectedTask = task;
-    this.selectedTask.isSelected = true;
-
+    task.isSelected = true;
     this.router.navigate([{ outlets: { 'side-panel': ['test', task.id] } }]);
+  }
+
+  ngOnDestroy(): void {
+    this.taskListServiceSubscription.unsubscribe();
+    this.sidePaneServiceSubscription.unsubscribe();
   }
 }

@@ -1,43 +1,62 @@
 import { Injectable } from '@angular/core';
 import { ITaskList, ITask } from './models/task';
 import { Swimlane } from './models/swimlane.model';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockTaskService {
-  getDetails(taskId: any): ITask {
-    var allTasks :ITask[] = [];
+  private _taskList: ITaskList[] = null;
+  private _taskListBs: BehaviorSubject<ITaskList[]> = new BehaviorSubject(this._taskList);
+  public taskListObserver$: Observable<ITaskList[]>;
 
-    this._taskList.forEach(function(swimLane){
+  
+  constructor() {
+    this.taskListObserver$ = this._taskListBs.asObservable();
+    this.generateData().then(() => {
+     this._taskListBs.next(this._taskList);
+    });
+  }
+
+  private getDetails(taskId: any): ITask {
+    var allTasks: ITask[] = [];
+
+    this._taskList.forEach(function (swimLane) {
       swimLane.tasks.forEach(task => {
         allTasks.push(task);
+
       });
     });
 
-   return allTasks.filter((item: ITask) => {return item.id == taskId})[0];
-
+    return allTasks.filter((item: ITask) => { return item.id == taskId })[0];
   }
 
+  deleteLane(taskDetails: ITaskList) : Promise<void>{
+    return new Promise((resolve, reject) => {
+      this._taskList.splice(this._taskList.indexOf(taskDetails), 1);
+      return resolve();
+  });
+}
 
-  deleteLane(taskDetails: ITaskList) {
-    this._taskList.splice(this._taskList.indexOf(taskDetails), 1);
+  add(model: Swimlane): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this._taskList.push({ title: model.name, tasks: [] });
+      resolve();
+    });
   }
 
-  add(model: Swimlane) {
-    this._taskList.push({ title: model.name, tasks: [] });
+  get$(id:number): Observable<ITask> {
+    const obs = Observable.create(obs => {
+      obs.next(this.getDetails(id));
+      obs.complete();
+    })
+
+    return obs;
   }
-  private _taskList: ITaskList[] = null;
 
-  get(): ITaskList[] {
-    return this._taskList;
-  }
-
-  generateData(): ITaskList[] {
-    if (this._taskList) {
-      return this._taskList;
-    }
-
+  private generateData(): Promise<ITaskList[]> {
+   return new Promise((resolve, reject) => {
     this._taskList = [{
       title: "Todo",
       tasks: [{
@@ -88,7 +107,8 @@ export class MockTaskService {
       }]
     }];
 
-    return this._taskList;
+    return resolve();
+  });
   }
 
   delete(task: ITask) {

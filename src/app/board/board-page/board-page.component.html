@@ -1,6 +1,5 @@
 <div class="details d-flex flex-row w-100 h-100" cdkDropListGroup>
     <div *ngFor="let x of taskDetails; index as i;">
-        <app-task-list [taskDetails]="x" [canCreate]="i == 0"  (onDragAndDropped)="drop($event)" (onSelectedCard)="handleOnSelected($event)"></app-task-list>
+        <app-task-list [taskDetails]="x" [canCreate]="i === 0"  (onDragAndDropped)="drop($event)" (onSelectedCard)="handleOnSelected($event)"></app-task-list>
     </div>
-    <app-panel></app-panel>  
 </div>

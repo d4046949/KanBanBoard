@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MockTaskService } from 'src/app/board/mock-task.service';
 import { ITask } from 'src/app/board/models/task';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EditCardService } from '../edit-card.service';
+import { TaskService } from 'src/app/task.service';
 
 @Component({
   selector: 'app-edit-card',
@@ -34,16 +33,8 @@ export class EditCardComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private mockData: MockTaskService,
     private formBuilder: FormBuilder,
-    private toggleService: EditCardService) {
-
-      this.route.params.subscribe(params => {
-        this.details = this.mockData.getDetails(params.id);
-        this.toggleService.emitLoad(this.details.id);
-        console.log('triggering');
-      });
-  }
+    private taskService: TaskService) {  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -53,12 +44,18 @@ export class EditCardComponent implements OnInit {
       status: []
     });
 
-    this.form.setValue({
-      'title': this.details.title,
-      'description': this.details.description,
-      'bugType': this.details.type,
-      'status': !this.details.status
-    });
+    this.route.data.subscribe((data) => {
+      if(data){
+      this.details = data.cres
+
+      this.form.setValue({
+        'title': this.details.title,
+        'description': this.details.description,
+        'bugType': this.details.type,
+        'status': !this.details.status
+      });
+      }
+   });
 
     this.form.valueChanges.subscribe(x => {
       this.canSave = (this.details.description !== this.form.value.description
@@ -69,17 +66,13 @@ export class EditCardComponent implements OnInit {
     });
   }
 
-  ngAfterContentChecked(){
-  
-  }
-
   onSubmit() {
     console.log('submitted', this.form.value, this.form.valid);
   }
 
   cancel(e) {
     e.preventDefault();
-    this.router.navigate([{ outlets: { 'side-panel': null} }]);
-    this.toggleService.toggle(true);
+    this.router.navigate([{ outlets: { 'side-panel': null } }]);
+    this.taskService.setActiveTask(null);
   }
 }

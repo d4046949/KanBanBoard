@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NoPageFoundComponent } from './core/no-page-found/no-page-found.component';
 import { BoardPageComponent } from './board/board-page/board-page.component';
 import { EditCardComponent } from './board/edit-card/edit-card.component';
+import { BoardResolverService } from './board/board-resolver.service';
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
   {
     path: 'test/:id',
     component: EditCardComponent,
+    resolve: {
+      cres: BoardResolverService
+    },
     outlet: 'side-panel',
     data: {
       animation: 'FilterPage',

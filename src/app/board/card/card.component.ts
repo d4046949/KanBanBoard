@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { ITask } from '../models/task';
+import { ConfirmationDialogService } from 'src/app/core/confirmation-dialog.service';
 
 @Component({
   selector: 'app-card',
@@ -17,11 +18,21 @@ export class CardComponent {
   private readonly cardIconMap = { 1: 'fas fa-bug red', 2: 'fas fa-list-ol blue', 3: 'fas fa-share-alt green' }
   private readonly cardBorderMap = { 1: 'left-border-red', 2: 'left-border-blue', 3: 'left-border-green' };
 
-  delete(): void {
-    this.deleteClicked.emit(this.details);
+  constructor(private confirmationDlg: ConfirmationDialogService) {
+
   }
 
-  clicked() {
+  delete(event): void {
+  event.stopPropagation();
+    let self = this;
+    this.confirmationDlg.confirm("Are you sure?", () => {
+      self.deleteClicked.emit(this.details);
+    }, () => { });
+
+  }
+
+  clicked(event) {
+    console.log('clicked');
     this.OnSelected.emit(this.details);
   }
 

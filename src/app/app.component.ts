@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { rightSliderAnimation } from './shared/right-slide.animation';
+import { ConfirmationDialogService } from './core/confirmation-dialog.service';
 
 
 @Component({
@@ -11,4 +12,12 @@ import { rightSliderAnimation } from './shared/right-slide.animation';
 })
 export class AppComponent {
   sidenavVisible: boolean = false;
+
+  constructor(private confirmDialogService: ConfirmationDialogService) {
+   
+  }
+
+  showDialog(){
+    this.confirmDialogService.confirm("eee", () => {}, () => {});
+  }
 }
